@@ -23,4 +23,19 @@ public class UsuarioController {
     public String login(@RequestBody LoginDTO dto) {
         return service.login(dto);
     }
+
+    @GetMapping("/{id}")
+    public Usuario buscar(@PathVariable Long id) {
+        return service.buscarPorId(id);
+    }
+
+    @PutMapping("/{id}")
+    public Usuario atualizar(@PathVariable Long id, @RequestBody UsuarioDTO dto) {
+        return service.atualizar(id, dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
+    }
 }
