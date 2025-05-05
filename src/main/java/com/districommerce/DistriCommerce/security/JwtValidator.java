@@ -11,7 +11,6 @@ import java.util.Date;
 @Component
 public class JwtValidator {
     private final SecretKey key = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
-    private final long EXPIRATION = 86400000; // 24 horas
 
     public boolean validateToken(String token) {
         try {

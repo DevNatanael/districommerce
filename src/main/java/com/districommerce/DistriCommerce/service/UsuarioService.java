@@ -25,6 +25,9 @@ public class UsuarioService {
     private PasswordEncoder passwordEncoder;
 
     public Usuario cadastrar(UsuarioDTO dto) {
+        if (repository.findByEmail(dto.getEmail()).isPresent()) {
+            throw new RuntimeException("Já existe um usuário cadastrado com este e-mail.");
+        }
         Usuario u = new Usuario();
         u.setNome(dto.getNome());
         u.setEmail(dto.getEmail());
