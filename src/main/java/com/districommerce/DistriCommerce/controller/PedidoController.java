@@ -1,11 +1,13 @@
 package com.districommerce.DistriCommerce.controller;
 
+import com.districommerce.DistriCommerce.dto.PedidoDTO;
+import com.districommerce.DistriCommerce.entity.Pedido;
 import com.districommerce.DistriCommerce.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/pedidos")
@@ -15,8 +17,20 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @PostMapping
-    public String enviarPedido(@RequestBody String pedido) {
-        pedidoService.enviarPedido(pedido);
-        return "Pedido enviado com sucesso!";
+    public ResponseEntity<Pedido> criarPedido(@RequestBody PedidoDTO pedidoDTO) {
+        Pedido pedido = pedidoService.criarPedido(pedidoDTO);
+        return ResponseEntity.ok(pedido);
     }
-} 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Pedido> buscarPorId(@PathVariable String id) {
+        Pedido pedido = pedidoService.buscarPorId(id);
+        return ResponseEntity.ok(pedido);
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Pedido>> buscarPorUsuario(@PathVariable Long usuarioId) {
+        List<Pedido> pedidos = pedidoService.buscarPorUsuario(usuarioId);
+        return ResponseEntity.ok(pedidos);
+    }
+}
