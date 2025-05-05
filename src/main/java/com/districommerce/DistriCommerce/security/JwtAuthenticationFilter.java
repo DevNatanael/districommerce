@@ -16,7 +16,7 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
-    private JwtValidator jwtValidator;
+    private JwtUtil jwtUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -28,8 +28,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
-            if (jwtValidator.validateToken(token)) {
-                email = jwtValidator.getEmailFromToken(token);
+            if (jwtUtil.validarToken(token)) {
+                email = jwtUtil.extrairEmail(token);
             }
         }
 
