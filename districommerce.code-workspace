@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../districommerce_pedidos"
+		},
+		{
+			"path": "../api-gateway"
+		},
+		{
+			"path": "../front-Distrcommerce"
+		}
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic"
+	}
+}
