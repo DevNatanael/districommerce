@@ -1,5 +1,6 @@
 package com.districommerce.DistriCommerce.controller;
 
+import com.districommerce.DistriCommerce.dto.EstoqueDTO;
 import com.districommerce.DistriCommerce.dto.ProdutoDTO;
 import com.districommerce.DistriCommerce.entity.Produto;
 import com.districommerce.DistriCommerce.service.ProdutoService;
@@ -28,6 +29,11 @@ public class ProdutoController {
     @GetMapping("/{id}")
     public Produto buscar(@PathVariable Long id) {
         return service.buscarPorId(id);
+    }
+
+    @PutMapping("/{id}/estoque")
+    public Produto atualizarEstoque(@PathVariable Long id, @RequestBody EstoqueDTO dto) {
+        return service.atualizarEstoque(id, dto.getEstoque());
     }
 
     @DeleteMapping("/{id}")

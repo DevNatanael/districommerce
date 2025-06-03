@@ -4,6 +4,7 @@ public class UsuarioDTO {
     private String nome;
     private String email;
     private String senha;
+    private Integer tipoUsuario; // 0 = cliente, 1 = fornecedor
 
     // Getters e Setters
 
@@ -29,5 +30,13 @@ public class UsuarioDTO {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Integer getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(Integer tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }

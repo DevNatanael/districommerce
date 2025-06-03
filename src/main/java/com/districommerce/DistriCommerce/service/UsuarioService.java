@@ -33,6 +33,7 @@ public class UsuarioService {
         u.setEmail(dto.getEmail());
         u.setSenha(passwordEncoder.encode(dto.getSenha()));
         u.setRole("USER");
+        u.setTipoUsuario(dto.getTipoUsuario()); // novo campo
         return repository.save(u);
     }
 
@@ -52,6 +53,10 @@ public class UsuarioService {
         return repository.findById(id).orElse(null);
     }
 
+    public Usuario buscarPorEmail(String email) {
+        return repository.findByEmail(email).orElse(null);
+    }
+
     public Usuario atualizar(Long id, UsuarioDTO dto) {
         Optional<Usuario> optional = repository.findById(id);
         if (optional.isPresent()) {
@@ -61,6 +66,7 @@ public class UsuarioService {
             if (dto.getSenha() != null && !dto.getSenha().isEmpty()) {
                 u.setSenha(passwordEncoder.encode(dto.getSenha()));
             }
+            u.setTipoUsuario(dto.getTipoUsuario()); // novo campo
             return repository.save(u);
         }
         return null;

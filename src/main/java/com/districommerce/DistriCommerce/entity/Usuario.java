@@ -15,6 +15,8 @@ public class Usuario {
     private String senha;
     private String role; // ex: "USER", "ADMIN"
 
+    private Integer tipoUsuario; // 0 = cliente, 1 = fornecedor
+
     // Getters e Setters
 
     public Long getId() {
@@ -55,5 +57,13 @@ public class Usuario {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Integer getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(Integer tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 }

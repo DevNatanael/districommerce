@@ -1,26 +1,5 @@
 version: '3.8'
 services:
-  produtos:
-    image: openjdk:17-jdk-slim
-    ports:
-      - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/districommerce
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=123456
-      - SPRING_RABBITMQ_HOST=rabbitmq
-      - SPRING_RABBITMQ_PORT=5672
-      - SPRING_RABBITMQ_USERNAME=guest
-      - SPRING_RABBITMQ_PASSWORD=guest
-    volumes:
-      - ./target:/app
-    working_dir: /app
-    command: java -jar *.jar
-    depends_on:
-      - postgres
-      - rabbitmq
-
   postgres:
     image: postgres:15
     container_name: postgres
@@ -45,23 +24,6 @@ services:
       RABBITMQ_DEFAULT_PASS: guest
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-
-  gateway:
-    image: openjdk:17-jdk-slim
-    ports:
-      - "8081:8081"
-    environment:
-      - SPRING_PROFILES_ACTIVE=dev
-      - SPRING_RABBITMQ_HOST=rabbitmq
-      - SPRING_RABBITMQ_PORT=5672
-      - SPRING_RABBITMQ_USERNAME=guest
-      - SPRING_RABBITMQ_PASSWORD=guest
-    volumes:
-      - ./gateway/target:/app
-    working_dir: /app
-    command: java -jar *.jar
-    depends_on:
-      - rabbitmq
 
 volumes:
   pg_data:

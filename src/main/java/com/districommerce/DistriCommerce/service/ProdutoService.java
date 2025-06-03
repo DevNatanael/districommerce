@@ -34,4 +34,11 @@ public class ProdutoService {
     public void deletar(Long id) {
         repository.deleteById(id);
     }
+
+    public Produto atualizarEstoque(Long id, Integer novoEstoque) {
+        Produto produto = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+        produto.setEstoque(novoEstoque);
+        return repository.save(produto);
+    }
 }
